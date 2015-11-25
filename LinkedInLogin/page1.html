@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>LinkedIn example - Page 1</title>
+        <script type="text/javascript" src="https://platform.linkedin.com/in.js">
+            api_key:  [YOUR LINKED IN KEY]
+            authorize: true
+            lang:  es_US
+        </script>
+    </head>
+
+    <body>
+    <script>
+        function processRequest(redirectURL) {
+          IN.User.authorize(function(){
+            window.location=    [PAGE TO REDIRECT TO];
+          });
+        }
+    </script>
+        <a href="javascript:void(0);" onclick="processRequest();" id="myLinkedInButton">download with linkedin</a>
+    </body>
+</html>

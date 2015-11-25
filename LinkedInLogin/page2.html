@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>LinkedIn example - Page 2</title>
+        <script type="text/javascript" src="https://platform.linkedin.com/in.js">
+            api_key: [YOUR LINKED IN KEY]
+            authorize: true
+            lang:  es_US
+            onLoad: onLinkedInLoad
+        </script>
+
+        <script type="text/javascript">
+            function onLinkedInLoad() {
+                if (!IN.User.isAuthorized()) {
+                    //TODO REPLACE WITH YOUR "to LOGIN page"
+                    window.location = [REPLACE WITH LOGIN PAGE];
+                    return;
+                }
+
+                IN.API.Profile("me").fields(
+                    [
+                        "id",
+                        "firstName",
+                        "lastName",
+                        "industry",
+                        "location:(name)",
+                        "picture-url",
+                        "headline",
+                        "summary",
+                        "num-connections",
+                        "public-profile-url",
+                        "distance",
+                        "positions",
+                        "email-address",
+                        "educations",
+                        "date-of-birth"
+                    ]
+                ).result(function(profiles, metadata) {
+                    if(window.canddi) {
+                        window.canddi.sendEvent(
+                            "TrackLinkedIn",
+                            profiles.values[0],
+                            false,
+                            "",
+                            undefined,
+                            ""
+                        );
+                    }
+                });
+            }
+        </script>
+    </head>
+
+    <body>
+        <h2>Congratulations - the user has identified and is tracked ;-)</h2>
+    </body>
+</html>
